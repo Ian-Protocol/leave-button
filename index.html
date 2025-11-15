@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Call Puzzle Button</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <main class="app">
+        <header class="app-header">
+            <p class="eyebrow">Call controls</p>
+            <h1>Leave call</h1>
+            <p class="intro">
+                When you try to leave, the button shatters like glass. Put it back together
+                before you can really hang up.
+            </p>
+        </header>
+
+        <div class="glass-button-wrapper">
+            <button id="leaveButton" class="glass-button" type="button">
+                <span class="button-label">Leave call</span>
+                <span class="button-glare" aria-hidden="true"></span>
+            </button>
+
+            <div class="shard shard-0" data-index="0"></div>
+            <div class="shard shard-1" data-index="1"></div>
+            <div class="shard shard-2" data-index="2"></div>
+            <div class="shard shard-3" data-index="3"></div>
+        </div>
+
+        <p id="status" role="status" aria-live="polite">
+            Ready when you are.
+        </p>
+    </main>
+</body>
+</html>

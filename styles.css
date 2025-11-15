@@ -1,0 +1,212 @@
+:root {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  color: #f8fbff;
+  background-color: #02030b;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: radial-gradient(circle at top, rgba(45, 113, 216, 0.35), transparent),
+    radial-gradient(circle at bottom, rgba(217, 70, 239, 0.25), transparent),
+    #02030b;
+}
+
+.app {
+  width: min(540px, 100%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.app-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.8rem;
+  color: #7dd3fc;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.intro {
+  margin: 0;
+  color: #c4d2ff;
+  line-height: 1.5;
+}
+
+.glass-button-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-self: center;
+  padding: 0.5rem;
+  border-radius: 999px;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.45));
+}
+
+.glass-button {
+  position: relative;
+  z-index: 1;
+  padding: 1.15rem 2.75rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #ff5f6d, #ffc371);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.18),
+    0 10px 25px rgba(255, 95, 109, 0.35);
+}
+
+.glass-button:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.65);
+  outline-offset: 4px;
+}
+
+.glass-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.glass-button-wrapper.shattered .glass-button {
+  opacity: 0;
+  transform: scale(0.94);
+  pointer-events: none;
+}
+
+.button-label {
+  position: relative;
+  z-index: 2;
+}
+
+.button-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.65), transparent 45%);
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.shard {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff5f6d, #ffc371);
+  background-size: 130% 130%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  transform: translate(0, 0);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+  box-shadow: 0 12px 35px rgba(255, 95, 109, 0.25);
+}
+
+.shard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent);
+  mix-blend-mode: screen;
+}
+
+.glass-button-wrapper.shattered .shard {
+  opacity: 1;
+}
+
+.glass-button-wrapper.puzzle-mode .shard {
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.shard.dragging {
+  cursor: grabbing;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+}
+
+.shard.placed {
+  box-shadow: none;
+}
+
+.shard-0 {
+  clip-path: polygon(0% 0%, 55% 0%, 40% 50%, 0% 60%);
+  background-position: 0% 0%;
+}
+
+.shard-1 {
+  clip-path: polygon(55% 0%, 100% 0%, 100% 60%, 40% 50%);
+  background-position: 100% 0%;
+}
+
+.shard-2 {
+  clip-path: polygon(0% 60%, 40% 50%, 55% 100%, 0% 100%);
+  background-position: 0% 100%;
+}
+
+.shard-3 {
+  clip-path: polygon(40% 50%, 100% 60%, 100% 100%, 55% 100%);
+  background-position: 100% 100%;
+}
+
+#status {
+  margin: 0;
+  font-size: 1rem;
+  color: #9ab5ff;
+  min-height: 1.5em;
+}
+
+.glass-button-wrapper.call-ended .glass-button {
+  opacity: 1;
+  background: linear-gradient(135deg, #374151, #1f2937);
+  box-shadow: none;
+}
+
+.glass-button-wrapper.call-ended .button-glare {
+  opacity: 0;
+}
+
+@media (max-width: 540px) {
+  body {
+    padding: 1.5rem;
+  }
+
+  .glass-button {
+    width: 100%;
+  }
+}
